@@ -1,0 +1,8 @@
+build/
+output/
+node_modules/
+*.log
+*-备份-*.json
+设计与实施.md
+验收记录.md
+tests/browser.mjs

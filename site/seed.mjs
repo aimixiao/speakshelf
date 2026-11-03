@@ -1,0 +1,20 @@
+export const SEED=[
+['s01','perspective','观点；视角','word','核心词汇','/pərˈspektɪv/','重音在第二个音节。'],
+['s02','sustainable','可持续的','word','核心词汇','/səˈsteɪnəbəl/','注意第二音节的重音。'],
+['s03','opportunity','机会','word','核心词汇','/ˌɑːpərˈtuːnəti/','注意美式 /tuː/。'],
+['s04','collaboration','合作','word','核心词汇','/kəˌlæbəˈreɪʃən/','重音落在 -ra-。'],
+['s05','significant','显著的；重要的','word','核心词汇','/sɪɡˈnɪfɪkənt/','避免每个音节都一样用力。'],
+['s06','approach','方法；方式','word','核心词汇','/əˈproʊtʃ/','美式双元音 /oʊ/。'],
+['s07','from my perspective','在我看来','phrase','实用表达','','作为提出个人观点的引导语。'],
+['s08','make a difference','产生影响；带来改变','phrase','实用表达','','把短语作为整体练习。'],
+['s09','take a closer look','进一步了解','phrase','实用表达','','用于引入细节或图表。'],
+['s10','Good morning, everyone.','大家早上好。','sentence','开场','','简洁地开场，之后稍作停顿。'],
+['s11',"Today, I'd like to share three key points.",'今天我想分享三个要点。','sentence','开场','','强调 three 和 key points。'],
+['s12',"Let me begin with a simple question.",'让我从一个简单的问题开始。','sentence','开场','','提问前留出一点空间。'],
+['s13',"Let's move on to the next point.",'接下来谈下一个要点。','sentence','过渡','','提示听众进入新内容。'],
+['s14','To put it simply, small changes can make a big difference.','简单来说，小改变也能带来大影响。','sentence','过渡','','逗号处停顿，强调 small 与 big 的对比。'],
+['s15','This brings me to my final point.','这就引出了我的最后一个要点。','sentence','过渡','','用于最后一个论点之前。'],
+['s16',"In conclusion, we all have a role to play.",'总之，我们每个人都能发挥作用。','sentence','结尾','','语速略放缓。'],
+['s17','Thank you for your time and attention.','感谢大家的时间和聆听。','sentence','结尾','','自然收尾。'],
+['s18',"I'd be happy to take your questions.",'我很乐意回答大家的问题。','sentence','结尾','','提问环节开场。']
+].map(([id,en,zh,type,group,ipa,note])=>({id,en,zh,type,group,ipa,note,bundledAudio:`audio/${id}.mp3`,favorite:['s02','s11','s14'].includes(id),mastered:false,createdAt:1793664000000,updatedAt:1793664000000}));
