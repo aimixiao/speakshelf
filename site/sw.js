@@ -1,4 +1,4 @@
-const SHELL='speakshelf-shell-v1';
+const SHELL='speakshelf-shell-v2';
 const AUDIO='speakshelf-audio-v1';
 const urls=['./','./index.html','./style.css','./app.mjs','./core.mjs','./db.mjs','./icons.mjs','./player.mjs','./seed.mjs','./manifest.webmanifest','./icons/icon.svg','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL).then(cache=>cache.addAll(urls))));
