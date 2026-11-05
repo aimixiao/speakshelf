@@ -1,6 +1,6 @@
-const SHELL='speakshelf-shell-v6';
+const SHELL='speakshelf-shell-v7';
 const AUDIO='speakshelf-audio-v1';
-const urls=['./','./index.html','./style.css','./app.mjs?v=20261105-backup-audio','./core.mjs','./db.mjs?v=20261105-bootfix','./icons.mjs','./player.mjs','./remote-tts.mjs?v=20261105-backup-audio','./seed.mjs','./manifest.webmanifest','./icons/icon.svg','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch.png'];
+const urls=['./','./index.html','./style.css','./app.mjs?v=20261105-batch-audio','./audio-batch.mjs','./core.mjs','./db.mjs?v=20261105-bootfix','./icons.mjs','./player.mjs','./remote-tts.mjs?v=20261105-backup-audio','./seed.mjs','./manifest.webmanifest','./icons/icon.svg','./icons/icon-192.png','./icons/icon-512.png','./icons/apple-touch.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL).then(cache=>cache.addAll(urls))));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('speakshelf-shell-')&&key!==SHELL)await caches.delete(key);await self.clients.claim();})()));
 self.addEventListener('message',event=>{if(event.data==='skipWaiting')self.skipWaiting();});
