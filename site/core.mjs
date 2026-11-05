@@ -45,6 +45,7 @@ const key=e=>e.en.trim().toLowerCase().replace(/\s+/g,' ');
 export function mergeEntries(existing,incoming){const seen=new Set(existing.map(key));let skipped=0;const entries=[...existing];for(const raw of incoming){const e=normalizeEntry(raw);if(seen.has(key(e))){skipped++;continue;}if(entries.some(x=>x.id===e.id))e.id=uid();entries.push(e);seen.add(key(e));}return{entries,skipped,added:entries.length-existing.length};}
 export function filterEntries(entries,{query='',type='',favorite=false,group=''}={}){query=query.trim().toLowerCase();return entries.filter(e=>(!type||e.type===type)&&(!favorite||e.favorite)&&(!group||e.group===group)&&(!query||[e.en,e.zh,e.note,e.group].some(x=>(x||'').toLowerCase().includes(query))));}
 export function chooseUSVoice(voices,preferred=''){const us=voices.filter(v=>v.lang?.replace('_','-').toLowerCase()==='en-us');return us.find(v=>v.name===preferred)||us.find(v=>v.localService)||us[0]||null;}
+export function backupAudioEntries(entries,storedIds=new Set()){return entries.filter(e=>e.bundledAudio&&!storedIds.has(e.id)).map(e=>({id:e.id,url:e.bundledAudio}));}
 export function validateBackup(raw){
   if(raw?.app!=='speakshelf'||raw.version!==1||!Array.isArray(raw.entries)||raw.entries.length>10000)throw Error('不是支持的 SpeakShelf 备份');
   const entries=raw.entries.map(normalizeEntry);const ids=new Set(entries.map(e=>e.id));if(ids.size!==entries.length)throw Error('备份词句 ID 重复');

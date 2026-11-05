@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseImport, normalizeEntry, mergeEntries, validateBackup, chooseUSVoice, filterEntries, assertLibraryCapacity } from '../site/core.mjs';
+import { parseImport, normalizeEntry, mergeEntries, validateBackup, chooseUSVoice, filterEntries, assertLibraryCapacity, backupAudioEntries } from '../site/core.mjs';
 
 test('CSV accepts Chinese headers, quoted commas and multiline notes', () => {
   const rows=parseImport('中文,英文,类型,分组,备注\r\n谢谢,"Thank you, everyone.",句子,结尾,"停顿\n微笑"');
@@ -48,4 +48,8 @@ test('accepted library fits full backup limits, including aggregate audio size',
   assert.doesNotThrow(()=>assertLibraryCapacity([{en:'Hello'}],Array(6).fill(8*1024*1024)));
   assert.throws(()=>assertLibraryCapacity([{en:'Hello'}],Array(7).fill(8*1024*1024)),/音频总量/);
   assert.throws(()=>assertLibraryCapacity(Array(10001),[]),/10000/);
+});
+test('backup audio plan includes bundled audio not already stored locally',()=>{
+  const entries=[{id:'s01',en:'Hello',bundledAudio:'audio/s01.mp3'},{id:'custom',en:'Custom',bundledAudio:'audio/custom.mp3'}];
+  assert.deepEqual(backupAudioEntries(entries,new Set(['custom'])),[{id:'s01',url:'audio/s01.mp3'}]);
 });

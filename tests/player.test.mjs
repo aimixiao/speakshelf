@@ -13,6 +13,11 @@ test('plays remote American English audio when the device has no matching voice'
   assert.equal(requested,'Good morning.');assert.equal(p.audio.src.startsWith('blob:'),true);p.audio.onended();assert.equal(await playing,true);
   assert.ok(states.some(s=>s?.source==='在线美式语音'));
 });
+test('reports generated remote audio so the app can persist it for backup',async()=>{
+  let saved;const p=new Speaker({source:()=>null,voice:()=>null,remote:async()=>new Blob(['audio'],{type:'audio/mpeg'}),onRemoteAudio:(text,blob)=>{saved={text,blob};},onState:()=>{}});
+  const playing=p.play({id:'remote-save',en:'Save this sentence.'});await new Promise(r=>setTimeout(r,0));p.audio.onended();await playing;
+  assert.equal(saved.text,'Save this sentence.');assert.equal(saved.blob.type,'audio/mpeg');
+});
 test('a canceled clip cannot revoke the replacement clip URL; repetitions reuse one URL',async()=>{
   const created=[],revoked=[];const create=URL.createObjectURL,revoke=URL.revokeObjectURL;
   URL.createObjectURL=()=>{const url='blob:'+created.length;created.push(url);return url;};URL.revokeObjectURL=url=>revoked.push(url);

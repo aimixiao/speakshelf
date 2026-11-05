@@ -39,7 +39,7 @@ GitHub Actions 在 `main` 推送后运行测试并发布 `site/` 到 Pages。发
 
 ### 在线美式语音配置
 
-Cloudflare Worker 代理将 ElevenLabs API Key 保存在服务端。部署后，在每台设备设置页填写 Worker HTTPS 地址（末尾加 `/tts`）和访问口令。不要将 API Key 或访问口令提交到仓库。
+Cloudflare Worker 代理将 ElevenLabs API Key 保存在服务端。部署后，在每台设备设置页填写 Worker HTTPS 地址（末尾加 `/tts`）和访问口令。导出完整备份时会包含内置示范音频、已上传音频，以及已经在线生成并保存到本机的音频。不要将 API Key 或访问口令提交到仓库。
 
 ```sh
 cd worker
