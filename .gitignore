@@ -6,3 +6,6 @@ node_modules/
 设计与实施.md
 验收记录.md
 tests/browser.mjs
+.env*
+.dev.vars*
+.wrangler/

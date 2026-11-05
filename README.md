@@ -15,7 +15,7 @@
 
 18 条内置音频为 Microsoft Zira Desktop **en-US** 合成示范，随站点提供。它们是固定的学习参考，并非真人录音或专业发音评测。音频文件约 350 KB。
 
-新增词句优先播放用户上传的示范音频，否则使用浏览器提供的 **en-US** 设备声音。只选择美式声音，不自动换成其他口音。设备没有美式声音时会提示安装系统语音或上传音频。在线设备声音由浏览器 / 系统供应商处理英文文本；网站本身没有收费语音接口。
+新增词句优先播放用户上传的示范音频，否则使用浏览器提供的 **en-US** 设备声音。只选择美式声音，不自动换成其他口音。设备没有美式声音时可使用配置好的 ElevenLabs 在线美式语音；该服务需要联网并可能产生费用。
 
 浏览器即时朗读不能由本应用保存成音频；是否能离线取决于所选系统声音。上传的音频保存在本地，可离线播放。支持 MP3 / WAV / M4A / OGG / WebM / AAC / FLAC，单条上限 8 MB，实际解码能力取决于浏览器。手机可能要求再次点击才能继续有声播放；锁屏或切换应用会停止跟读。
 
@@ -36,3 +36,15 @@ node --test tests/core.test.mjs tests/player.test.mjs
 ```
 
 GitHub Actions 在 `main` 推送后运行测试并发布 `site/` 到 Pages。发布新版本修改 `sw.js` 的 shell 缓存版本；已打开的客户端会提示更新，个人数据保留。
+
+### 在线美式语音配置
+
+Cloudflare Worker 代理将 ElevenLabs API Key 保存在服务端。部署后，在每台设备设置页填写 Worker HTTPS 地址（末尾加 `/tts`）和访问口令。不要将 API Key 或访问口令提交到仓库。
+
+```sh
+cd worker
+npx wrangler login
+npx wrangler deploy
+npx wrangler secret put ELEVENLABS_API_KEY
+npx wrangler secret put ACCESS_TOKEN
+```
