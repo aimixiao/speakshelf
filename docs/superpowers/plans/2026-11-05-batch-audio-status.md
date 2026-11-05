@@ -67,4 +67,4 @@ Files:
 
 - [x] Bump shell/module query versions so mobile clients fetch the new feature.
 - [x] Run npm test, node --check for changed modules, and git diff --check.
-- [ ] Commit and push the release; verify the public Service Worker contains the new shell version.
+- [x] Commit and push the release; verify the public Service Worker contains the new shell version.
