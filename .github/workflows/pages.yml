@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: '24'
       - name: Validate data and playback logic
-        run: node --test tests/core.test.mjs tests/player.test.mjs
+        run: npm test
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
